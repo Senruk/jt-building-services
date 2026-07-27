@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   // --- Mobile nav toggle ---
   const toggle=document.querySelector('.nav-toggle');
   const html=document.documentElement;
-  toggle?.addEventListener('click',()=>html.classList.toggle('nav-open'));
+  toggle?.addEventListener('click',()=>{
+    const isOpen=html.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded',isOpen);
+  });
 
   // Close mobile nav on link click
   document.querySelectorAll('.nav-links a').forEach(a=>{
@@ -37,6 +40,53 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
   }else{
     document.querySelectorAll('.rv').forEach(el=>el.classList.add('vis'));
+  }
+
+  // --- Contact form validation ---
+  const form=document.getElementById('contact-form');
+  if(form){
+    const fields={
+      name:{label:'Full name'},
+      email:{label:'Email address'},
+      message:{label:'Project details'}
+    };
+    Object.keys(fields).forEach(id=>{
+      const input=form.querySelector(`#${id}`);
+      const err=document.createElement('span');
+      err.className='form-error';
+      err.id=`${id}-error`;
+      err.style.cssText='display:block;font-size:.75rem;color:var(--red);margin-top:4px;min-height:0';
+      input?.parentNode?.insertBefore(err,input.nextSibling);
+    });
+    form.addEventListener('submit',e=>{
+      let valid=true;
+      Object.keys(fields).forEach(id=>{
+        const input=form.querySelector(`#${id}`);
+        const err=document.getElementById(`${id}-error`);
+        if(!input||!err)return;
+        const val=input.value.trim();
+        if(!val){
+          err.textContent=`Please enter your ${fields[id].label.toLowerCase()}`;
+          input.style.borderColor='var(--red)';
+          valid=false;
+        }else if(id==='email'&&!/^\S+@\S+\.\S+$/.test(val)){
+          err.textContent='Please enter a valid email address';
+          input.style.borderColor='var(--red)';
+          valid=false;
+        }else{
+          err.textContent='';
+          input.style.borderColor='';
+        }
+      });
+      if(!valid)e.preventDefault();
+    });
+    form.querySelectorAll('input,textarea,select').forEach(el=>{
+      el.addEventListener('input',()=>{
+        el.style.borderColor='';
+        const err=document.getElementById(`${el.id}-error`);
+        if(err)err.textContent='';
+      });
+    });
   }
 
 });
