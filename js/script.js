@@ -1,4 +1,4 @@
-/* J.T Building Services — Shared Scripts */
+/* JT.BS South Wales Ltd — Shared Scripts */
 
 document.addEventListener('DOMContentLoaded',()=>{
 
