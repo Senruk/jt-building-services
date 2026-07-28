@@ -42,6 +42,89 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.querySelectorAll('.rv').forEach(el=>el.classList.add('vis'));
   }
 
+  // --- Hero frame animation ---
+  (function(){
+    const img=document.getElementById('hero-video');
+    if(!img)return;
+    if(!window.matchMedia('(prefers-reduced-motion:no-preference)').matches)return;
+    const total=180,fps=30;
+    const frames=[];
+    let loaded=0,running=false,interval=null;
+
+    function start(){
+      if(running)return;
+      running=true;
+      let idx=1;
+      interval=setInterval(()=>{
+        img.src=frames[idx].src;
+        idx=(idx+1)%total;
+      },1000/fps);
+    }
+    function stop(){
+      if(!running)return;
+      running=false;
+      if(interval){clearInterval(interval);interval=null}
+    }
+
+    for(let i=1;i<=total;i++){
+      const f=new Image();
+      const n=String(i).padStart(3,'0');
+      f.onload=f.onerror=()=>{loaded++;if(loaded===total)start()};
+      f.src='images/hero-frames/ezgif-frame-'+n+'.jpg';
+      frames.push(f);
+    }
+
+    const hero=document.querySelector('.hero');
+    if(hero){
+      const io=new IntersectionObserver(([e])=>{
+        e.isIntersecting&&loaded===total?start():stop();
+      },{threshold:.1});
+      io.observe(hero);
+    }
+  })();
+
+  // --- Before/After Slider ---
+  (function(){
+    const containers=document.querySelectorAll('.ba-container');
+    containers.forEach(ba=>{
+      if(!ba)return;
+      const after=ba.querySelector('.ba-after');
+      const handle=ba.querySelector('.ba-handle');
+      let active=false;
+      function setPos(e){
+        const rect=ba.getBoundingClientRect();
+        const x=e.touches?e.touches[0].clientX:e.clientX;
+        let pct=((x-rect.left)/rect.width)*100;
+        pct=Math.max(0,Math.min(100,pct));
+        after.style.width=pct+'%';
+        handle.style.left=(100-pct)+'%';
+      }
+      ba.addEventListener('mousedown',e=>{active=true;setPos(e)});
+      window.addEventListener('mouseup',()=>{active=false});
+      window.addEventListener('mousemove',e=>{if(active)setPos(e)});
+      ba.addEventListener('touchstart',e=>{active=true;setPos(e)},{passive:true});
+      window.addEventListener('touchend',()=>{active=false});
+      window.addEventListener('touchmove',e=>{if(active)setPos(e)},{passive:true});
+    });
+  })();
+
+  // --- Video autoplay on scroll ---
+  (function(){
+    const videos=document.querySelectorAll('.video-card video');
+    if(!videos.length||!window.IntersectionObserver)return;
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        const v=e.target;
+        if(e.isIntersecting){
+          v.play().catch(()=>{});
+        }else{
+          v.pause();
+        }
+      });
+    },{threshold:.3});
+    videos.forEach(v=>obs.observe(v));
+  })();
+
   // --- Contact form validation ---
   const form=document.getElementById('contact-form');
   if(form){
