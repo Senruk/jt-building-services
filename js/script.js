@@ -125,6 +125,65 @@ document.addEventListener('DOMContentLoaded',()=>{
     videos.forEach(v=>obs.observe(v));
   })();
 
+  // --- Project gallery filter ---
+  (function(){
+    const gallery=document.getElementById('project-gallery');
+    if(!gallery)return;
+    const btns=document.querySelectorAll('.filter-btn');
+    const cards=gallery.querySelectorAll('.project-card');
+    btns.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        btns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter=btn.dataset.filter;
+        cards.forEach(card=>{
+          if(filter==='all'||card.dataset.filter===filter){
+            card.style.display='';
+            card.style.opacity='1';
+            card.style.transform='';
+          }else{
+            card.style.opacity='0';
+            card.style.transform='scale(.95)';
+            setTimeout(()=>{card.style.display='none'},350);
+          }
+        });
+      });
+    });
+  })();
+
+  // --- Animated stat counters ---
+  (function(){
+    const nums=document.querySelectorAll('.stat-item .num');
+    if(!nums.length||!window.IntersectionObserver)return;
+    const animated=new Set();
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(!e.isIntersecting||animated.has(e.target))return;
+        animated.add(e.target);obs.unobserve(e.target);
+        const el=e.target;
+        const txt=el.textContent.trim();
+        // Extract numeric value, suffix, and prefix
+        const numMatch=txt.match(/([0-9,]+)/);
+        if(!numMatch||txt==='2016')return;
+        const target=parseInt(numMatch[1].replace(/,/g,''),10);
+        const suffix=txt.replace(numMatch[1],'').trim();
+        const start=performance.now();
+        const dur=1500;
+        el.textContent='0'+suffix;
+        function tick(now){
+          const t=Math.min((now-start)/dur,1);
+          // ease-out expo
+          const v=t===1?1:1-Math.pow(2,-10*t);
+          const val=Math.round(v*target);
+          el.textContent=val.toLocaleString()+suffix;
+          if(t<1)requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    },{threshold:.4});
+    nums.forEach(n=>obs.observe(n));
+  })();
+
   // --- Contact form validation ---
   const form=document.getElementById('contact-form');
   if(form){

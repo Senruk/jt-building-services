@@ -66,6 +66,15 @@ p+p{margin-top:1rem}
 .skip-link{position:fixed;top:-100%;left:16px;z-index:1000;background:var(--dark);color:#FFF;padding:12px 20px;border-radius:var(--radius);font-weight:600;font-size:.85rem;border:1px solid rgba(255,255,255,0.15);transition:top .25s}
 .skip-link:focus{top:16px}
 
+/* ----- LEGAL / PRIVACY ----- */
+.legal-content{max-width:720px;margin:0 auto}
+.legal-content h2{font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em;margin-bottom:.5rem;margin-top:2.5rem}
+.legal-content h2:first-child{margin-top:0}
+.legal-content p{font-size:.92rem;color:var(--text-lt);line-height:1.7;margin-bottom:.75rem}
+.legal-content ul{margin-bottom:1rem;padding-left:1.25rem}
+.legal-content ul li{font-size:.92rem;color:var(--text-lt);line-height:1.7;list-style:disc;margin-bottom:.25rem}
+.legal-content strong{color:var(--ink)}
+
 /* ----- BUTTONS ----- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.75rem 1.75rem;border-radius:var(--radius);font-weight:600;font-size:.9rem;border:none;transition:all .3s;letter-spacing:.005em;line-height:1}
 .btn-red{background:var(--red);color:var(--white)}
@@ -148,6 +157,13 @@ body:has(.hero) nav.scrolled .nav-toggle{color:var(--muted)}
 .service-card ul li{font-size:.83rem;color:var(--text-lt);padding-left:1.1rem;position:relative;font-weight:500}
 .service-card ul li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--red);opacity:.6}
 
+/* ----- PROJECT FILTER ----- */
+.filter-bar{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.filter-btn{padding:.45rem 1.1rem;border:1.5px solid var(--border);background:var(--elevated);color:var(--muted);border-radius:50px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .3s}
+.filter-btn:hover{border-color:var(--red);color:var(--red)}
+.filter-btn.active{background:var(--red);color:var(--white);border-color:var(--red)}
+.gallery-grid .project-card{transition:opacity .4s,transform .4s}
+
 /* ----- GALLERY ----- */
 .gallery-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem}
 
@@ -220,6 +236,28 @@ body:has(.hero) nav.scrolled .nav-toggle{color:var(--muted)}
 .cd-item p{font-size:.82rem;color:var(--muted);line-height:1.5}
 .cd-item a{color:var(--red);font-weight:600;transition:color .25s}
 .cd-item a:hover{color:var(--red-hover)}
+
+/* ----- FAQ ----- */
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:.5rem}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--elevated);transition:border-color .3s}
+.faq-item:hover{border-color:rgba(200,16,46,0.2)}
+.faq-item details{transition:all .3s}
+.faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:1.15rem 1.5rem;cursor:pointer;font-weight:600;font-size:.93rem;color:var(--ink);letter-spacing:.005em;transition:color .3s}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--red)}
+.faq-item summary svg{flex-shrink:0;transition:transform .35s cubic-bezier(.22,1,.36,1);color:var(--muted)}
+.faq-item details[open] summary svg{transform:rotate(-180deg)}
+.faq-item details[open] summary{color:var(--red)}
+.faq-answer{padding:0 1.5rem 1.15rem;border-top:1px solid var(--border-lt)}
+.faq-answer p{font-size:.88rem;color:var(--muted);line-height:1.7;margin-top:1rem}
+
+/* ----- PROCESS STEPS ----- */
+.process-steps{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:.5rem}
+.process-step{display:flex;gap:1.5rem;padding:1.75rem 2rem;background:var(--elevated);border:1px solid var(--border);border-radius:var(--radius);transition:all .35s;align-items:flex-start}
+.process-step:hover{box-shadow:var(--shadow-lg);border-color:rgba(200,16,46,0.2);transform:translateX(4px)}
+.ps-num{font-family:var(--head);font-size:2.2rem;font-weight:900;color:var(--red);line-height:1;flex-shrink:0;min-width:48px;letter-spacing:-0.03em}
+.ps-body h3{font-size:1.15rem;font-weight:700;margin-bottom:.25rem;color:var(--ink);letter-spacing:-0.01em}
+.ps-body p{font-size:.88rem;color:var(--muted);line-height:1.65}
 
 /* ----- FOOTER ----- */
 footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);padding:3.5rem 0 0}
