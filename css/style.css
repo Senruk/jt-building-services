@@ -40,7 +40,7 @@ input,textarea,select{font:inherit}
 
 :focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:2px}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 /* ----- UTILITY ----- */
 .container{width:100%;max-width:var(--max-w);margin:0 auto;padding:0 28px}
@@ -354,4 +354,13 @@ footer ul a:hover{color:#FFF}
   .service-card{grid-template-columns:1fr}
   /* collapse inline 4-col values to 1 col */
   div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important}
+  /* collapse inline 2-col grids without gap:clamp */
+  div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  /* process steps: tighter padding on mobile */
+  .process-step{padding:1.25rem 1.25rem}
+  /* filter bar: tighter buttons on mobile */
+  .filter-btn{padding:.35rem .85rem;font-size:.72rem}
+  /* faq items: tighter padding on mobile */
+  .faq-item summary{padding:.9rem 1.1rem}
+  .faq-answer{padding:0 1.1rem .9rem}
 }
