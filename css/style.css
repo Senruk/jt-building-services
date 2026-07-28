@@ -193,6 +193,12 @@ body:has(.hero) nav.scrolled .nav-toggle{color:var(--muted)}
 .accr-item strong{display:block;font-size:.82rem;color:var(--ink);font-weight:600;margin-bottom:2px}
 .accr-item span{font-size:.7rem;color:var(--muted);display:block}
 
+/* ----- STICKY CALL BUTTON (mobile) ----- */
+.sticky-call{display:none;position:fixed;bottom:0;left:0;width:100%;z-index:999;background:var(--dark);border-top:2px solid var(--red);padding:0}
+.sticky-call a{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1rem;color:#fff;font-size:.95rem;font-weight:700;font-family:var(--body);text-decoration:none;width:100%;min-height:48px}
+.sticky-call a svg{width:18px;height:18px;flex-shrink:0}
+.sticky-call a:hover{background:rgba(255,255,255,0.05)}
+
 /* ----- CTA ----- */
 .cta-block{background:var(--alt);border-top:1px solid var(--border-lt);border-bottom:1px solid var(--border-lt);padding:clamp(4rem,7vw,5.5rem) 0;text-align:center}
 .cta-block h2{color:var(--ink);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-0.01em;margin-bottom:.6rem}
@@ -301,8 +307,11 @@ footer ul a:hover{color:#FFF}
   .nav-cta{display:none}
   .cta-block .btn{width:100%;justify-content:center;margin-bottom:.5rem;min-height:44px}
   .cta-block .btn-red{margin-right:0}
+  .sticky-call{display:flex}
+  .footer-bot{padding-bottom:3.5rem}
   .footer-bot{flex-direction:column;text-align:center}
   .hero h1{font-size:2.4rem}
+  .sticky-call{display:flex}
   .page-hero h1{font-size:2rem}
   .service-card{grid-template-columns:1fr}
   /* collapse inline 4-col values to 1 col */
