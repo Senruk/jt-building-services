@@ -66,13 +66,15 @@
 
 <main id="main">
 
-<!-- HERO -->
+<!-- HERO — full-screen video background -->
 <section class="hero">
   <div class="hero-bg">
-    <!-- Client site footage  -  180 frames, animated via JS (see script.js) -->
-    <img src="images/hero-frames/ezgif-frame-001.jpg" alt="" id="hero-video">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero-frames/ezgif-frame-001.jpg">
+      <source src="images/videos/clip-1_18s.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="container hero-content">
+    <p class="hero-kicker">Established 2016  &mdash;  Barry, South Wales</p>
     <h1>Commercial construction.<br><span class="accent">Delivered.</span></h1>
     <p>Fit-out, refurbishment and new build for commercial clients across South Wales. On time, on budget, to spec.</p>
     <div class="hero-actions">
@@ -81,7 +83,9 @@
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><strong>2016</strong><span>Established</span></div>
-      <div class="hero-stat"><strong>250+</strong><span>Projects</span></div>
+      <div class="hero-stat"><strong>250+</strong><span>Projects Delivered</span></div>
+      <div class="hero-stat"><strong>12</strong><span>Direct Employees</span></div>
+      <div class="hero-stat"><strong>5</strong><span>In-House Trades</span></div>
     </div>
   </div>
 </section>
@@ -92,7 +96,7 @@
     <div class="section-title text-center">
       <span class="tag">Commercial Capabilities</span>
       <h2>What we deliver</h2>
-      <p>In-house trades across every commercial discipline  -  from fit-out to ground-up construction, managed end to end.</p>
+      <p>In-house trades across every commercial discipline  &mdash;  from fit-out to ground-up construction, managed end to end.</p>
     </div>
     <div class="services-strip">
       <div class="service-mini rv">
@@ -117,84 +121,18 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:2.5rem">
-      <a href="services.html" class="btn btn-red">Full Service List</a>
+      <a href="services.html" class="btn btn-red">View All Services</a>
     </div>
   </div>
 </section>
 
-<!-- WHY CHOOSE US -->
-<section class="section section-alt">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center">
-      <div class="rv">
-        <span class="tag">Why Choose Us</span>
-        <h2 style="font-size:clamp(1.5rem,3vw,2.4rem);font-weight:700;color:var(--ink);letter-spacing:-0.02em;line-height:1.05;margin-bottom:.65rem">Commercial capability. Single-point accountability.</h2>
-        <p>In-house trades across every discipline  -  groundworks, structure, M&E, fit-out. Every project managed end to end with a single point of accountability. No subcontractors, no handoffs, no surprises.</p>
-        <p>Twelve direct employees. Five trades under one roof. Established since 2016, delivering commercial construction across South Wales. Our track record is built on delivery certainty, safety compliance, and quality control  -  not subcontractor roulette.</p>
-        <a href="about.html" class="btn btn-red" style="margin-top:.75rem">About Us</a>
-      </div>
-      <div class="rv rv-1">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <div class="value-card"><h3>250+ Projects</h3><p>Commercial and industrial projects delivered across South Wales.</p></div>
-          <div class="value-card"><h3>Zero Subcontractors</h3><p>Every trade in-house, fully employed. Single-point accountability on every contract.</p></div>
-          <div class="value-card"><h3>In-House Trades</h3><p>Groundworks, structure, M&E, fit-out  -  we do it all. No handoffs between contractors.</p></div>
-          <div class="value-card"><h3>Since 2016</h3><p>Nearly a decade of commercial construction experience across South Wales.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BEFORE/AFTER SLIDER -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-title text-center">
-      <span class="tag">See the Difference</span>
-      <h2>From foundation to finish</h2>
-      <p>Drag the slider to compare  -  raw construction phase to completed project. Every stage delivered by our in-house team.</p>
-    </div>
-    <div class="ba-grid">
-      <div class="ba-wrapper">
-        <div class="ba-container" role="img" aria-label="Before and after comparison 1">
-          <div class="ba-before">
-            <img src="images/before-after/before-1.jpeg" alt="Construction phase  -  exterior structure">
-          </div>
-          <div class="ba-after">
-            <img src="images/before-after/after-1.jpeg" alt="Completed project  -  finished interior">
-          </div>
-          <button class="ba-handle" aria-label="Drag to compare before and after">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-          <span class="ba-label ba-label-left">Before</span>
-          <span class="ba-label ba-label-right">After</span>
-        </div>
-      </div>
-      <div class="ba-wrapper">
-        <div class="ba-container" role="img" aria-label="Before and after comparison 2">
-          <div class="ba-before">
-            <img src="images/before-after/before-2.jpeg" alt="Construction phase  -  site progress">
-          </div>
-          <div class="ba-after">
-            <img src="images/before-after/after-2.jpeg" alt="Completed project  -  finished result">
-          </div>
-          <button class="ba-handle" aria-label="Drag to compare before and after">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-          <span class="ba-label ba-label-left">Before</span>
-          <span class="ba-label ba-label-right">After</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section class="section" id="projects">
+<!-- FEATURED PROJECTS -->
+<section class="section section-alt" id="projects">
   <div class="container">
     <div class="section-title text-center">
       <span class="tag">Commercial Projects</span>
-      <h2>Project portfolio</h2>
-      <p>A selection of commercial projects delivered across South Wales.</p>
+      <h2>Featured work</h2>
+      <p>A selection of commercial projects delivered across South Wales by our in-house team.</p>
     </div>
     <div class="gallery-grid">
       <div class="project-card rv">
@@ -211,59 +149,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:2.5rem">
-      <a href="projects.html" class="btn btn-red">All Projects</a>
-    </div>
-  </div>
-</section>
-
-<!-- VIDEO SHOWCASE -->
-<section class="section">
-  <div class="container">
-    <div class="section-title text-center">
-      <span class="tag">Work in Action</span>
-      <h2>On-site footage</h2>
-      <p>See our teams working across South Wales. Real projects, real progress.</p>
-    </div>
-    <div class="video-grid">
-      <div class="video-card rv">
-        <video src="images/videos/clip-1_18s.mp4" muted loop playsinline autoplay preload="auto" controls aria-label="Time-lapse of commercial construction project progress"></video>
-      </div>
-      <div class="video-card rv rv-1">
-        <video src="images/videos/clip-2_7s.mp4" muted loop playsinline autoplay preload="auto" controls aria-label="Construction site footage  -  groundworks and foundation works"></video>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-title text-center">
-      <span class="tag">Project Delivery</span>
-      <h2>Project case studies</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem">
-      <div class="testi rv">
-                <blockquote>Commercial fit-out for a live retail premises. Full-scope delivery including M&E, HVAC and interior finishes. Completed on programme with zero disruption to trading hours.</blockquote>
-        <footer>
-          James Mitchell
-          <span>Director, Cardiff Retail Ltd &mdash; Cardiff city centre, completed Q4 2025</span>
-        </footer>
-      </div>
-      <div class="testi rv rv-1">
-                <blockquote>Ground-up commercial new build from foundations to handover. In-house trades across groundworks, structure, M&E and fit-out. Single-point accountability throughout.</blockquote>
-        <footer>
-          Stephen Davies
-          <span>Operations Manager, Vale Commercial &mdash; Penarth, 8,000 sq ft, delivered Q2 2025</span>
-        </footer>
-      </div>
-      <div class="testi rv rv-2">
-                <blockquote>Full M&E design and installation for a commercial premises. All works certified to current regulations, delivered within programme and budget.</blockquote>
-        <footer>
-          Robert Williams
-          <span>Facilities Director, Newport Industrial &mdash; Newport, completed March 2026</span>
-        </footer>
-      </div>
+      <a href="projects.html" class="btn btn-red">View All Projects</a>
     </div>
   </div>
 </section>
