@@ -1,4 +1,4 @@
-/* JT.BS South Wales Ltd — Shared Scripts */
+/* JT.BS South Wales Ltd - Shared Scripts */
 
 document.addEventListener('DOMContentLoaded',()=>{
 
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         const txt=el.textContent.trim();
         // Extract numeric value, suffix, and prefix
         const numMatch=txt.match(/([0-9,]+)/);
-        if(!numMatch||txt==='2016')return;
+        if(!numMatch||txt==='2013')return;
         const target=parseInt(numMatch[1].replace(/,/g,''),10);
         const suffix=txt.replace(numMatch[1],'').trim();
         const start=performance.now();
