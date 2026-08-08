@@ -1,6 +1,6 @@
 /* =========================================
    JT.BS South Wales Ltd - Corporate Edition
-   White / Red
+   Black / Red
    ========================================= */
 
 /* ----- RESET & VARIABLES ----- */
@@ -12,24 +12,24 @@ button{cursor:pointer;font:inherit}
 input,textarea,select{font:inherit}
 
 :root{
-  --bg:#FAFAFA;
-  --alt:#F0F0F0;
-  --elevated:#FFF;
-  --dark:#1A1A1A;
+  --bg:#0A0A0A;
+  --alt:#131313;
+  --elevated:#1A1A1A;
+  --dark:#050505;
   --red:#C8102E;
   --red-hover:#E31B23;
   --red-depth:#8B0000;
-  --ink:#1A1A1A;
-  --text:#1A1A1A;
-  --text-lt:#333;
-  --muted:#666;
+  --ink:#F2F2F2;
+  --text:#E8E8E8;
+  --text-lt:#C8CCD1;
+  --muted:#9C9C9C;
   --white:#FFF;
-  --border:rgba(0,0,0,0.08);
-  --border-lt:rgba(0,0,0,0.04);
-  --glass:rgba(250,250,250,0.95);
-  --shadow:0 1px 3px rgba(0,0,0,0.1);
-  --shadow-lg:0 10px 40px rgba(0,0,0,0.12);
-  --shadow-btn:0 4px 20px rgba(139,0,0,0.25);
+  --border:rgba(255,255,255,0.12);
+  --border-lt:rgba(255,255,255,0.06);
+  --glass:rgba(10,10,10,0.88);
+  --shadow:0 2px 8px rgba(0,0,0,0.5);
+  --shadow-lg:0 14px 44px rgba(0,0,0,0.6);
+  --shadow-btn:0 4px 20px rgba(200,16,46,0.25);
   --body:"Inter",-apple-system,sans-serif;
   --head:"Barlow Condensed",-apple-system,sans-serif;
   --max-w:1180px;
@@ -79,8 +79,8 @@ p+p{margin-top:1rem}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.75rem 1.75rem;border-radius:var(--radius);font-weight:600;font-size:.9rem;border:none;transition:all .3s;letter-spacing:.005em;line-height:1}
 .btn-red{background:var(--red);color:var(--white)}
 .btn-red:hover{background:var(--red-hover);box-shadow:var(--shadow-btn)}
-.btn-outline{background:transparent;color:var(--ink);border:1.5px solid rgba(0,0,0,0.25)}
-.btn-outline:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid rgba(255,255,255,0.28)}
+.btn-outline:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .btn-outline-dark{background:transparent;color:var(--text);border:1.5px solid var(--border)}
 .btn-outline-dark:hover{border-color:var(--text);background:var(--elevated);color:var(--ink)}
 
@@ -272,14 +272,22 @@ footer ul a:hover{color:#FFF}
 .footer-logo span{color:var(--red)}
 
 /* ----- BEFORE/AFTER SLIDER ----- */
-.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-@media(max-width:900px){.ba-grid{grid-template-columns:1fr}}
-.ba-wrapper{max-width:900px;margin:0 auto;width:100%}
+.ba-carousel{position:relative;max-width:620px;margin:0 auto;min-height:220px}
+.ba-carousel .ba-container{position:absolute;inset:0;width:100%;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease,visibility .4s ease}
+.ba-carousel .ba-container.active{position:relative;opacity:1;visibility:visible;pointer-events:auto}
 .ba-container{position:relative;overflow:hidden;cursor:ew-resize;user-select:none;-webkit-user-select:none;border-radius:12px;aspect-ratio:16/11;min-height:200px;background:var(--dark)}
+.ba-nav{display:flex;align-items:center;justify-content:center;gap:1.25rem;margin-top:1.25rem}
+.ba-nav-btn{display:inline-flex;align-items:center;gap:.35rem;background:none;border:1px solid var(--border);border-radius:8px;padding:.5rem 1.1rem;font-family:var(--body);font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .25s ease}
+.ba-nav-btn:hover{color:var(--ink);border-color:var(--red)}
+.ba-nav-btn:active{transform:scale(.97)}
+.ba-dots{display:flex;gap:.55rem}
+.ba-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(255,255,255,.35);background:transparent;cursor:pointer;padding:0;transition:all .3s ease}
+.ba-dot:hover{border-color:var(--red)}
+.ba-dot.active{background:var(--red);border-color:var(--red)}
 .ba-before{position:absolute;inset:0;z-index:1}
 .ba-container img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block}
 .ba-after{position:absolute;top:0;right:0;bottom:0;width:50%;overflow:hidden;z-index:2}
-.ba-handle{position:absolute;top:50%;left:50%;z-index:4;width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid #fff;display:flex;align-items:center;justify-content:center;cursor:ew-resize;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.3);transition:transform .25s,box-shadow .25s;padding:0;transform:translate(-50%,-50%)}
+.ba-handle{position:absolute;top:50%;left:50%;z-index:4;width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid #fff;display:flex;align-items:center;justify-content:center;cursor:ew-resize;color:#111;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:transform .25s,box-shadow .25s;padding:0;transform:translate(-50%,-50%)}
 .ba-handle:hover{box-shadow:0 4px 16px rgba(0,0,0,.4);transform:translate(-50%,-50%) scale(1.1)}
 .ba-handle svg{width:20px;height:20px}
 .ba-label{position:absolute;bottom:1rem;z-index:3;padding:.35rem .85rem;background:rgba(0,0,0,.6);color:#fff;font-size:.75rem;font-weight:500;border-radius:6px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);pointer-events:none;text-transform:uppercase;letter-spacing:.06em}
@@ -294,6 +302,7 @@ footer ul a:hover{color:#FFF}
 @media(prefers-reduced-motion:no-preference){
   .rv{opacity:0;transform:translateY(24px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
   .rv.vis{opacity:1;transform:translateY(0)}
+  .rv-right{transform:translateX(56px)}
   .rv-1{transition-delay:.08s}
   .rv-2{transition-delay:.16s}
   .rv-3{transition-delay:.24s}

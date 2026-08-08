@@ -108,6 +108,33 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   })();
 
+  // --- Before/After carousel navigation ---
+  (function(){
+    const carousel=document.querySelector('.ba-carousel');
+    if(!carousel)return;
+    const containers=carousel.querySelectorAll('.ba-container');
+    if(!containers.length)return;
+    const prevBtn=document.querySelector('.ba-nav-prev');
+    const nextBtn=document.querySelector('.ba-nav-next');
+    const dots=carousel.parentElement.querySelectorAll('.ba-dot');
+    let current=0;
+    containers.forEach((c,i)=>{if(c.classList.contains('active'))current=i});
+    function goTo(index){
+      if(index<0)index=containers.length-1;
+      if(index>=containers.length)index=0;
+      containers.forEach((c,i)=>c.classList.toggle('active',i===index));
+      dots.forEach((d,i)=>{
+        const on=i===index;
+        d.classList.toggle('active',on);
+        d.setAttribute('aria-selected',on);
+      });
+      current=index;
+    }
+    prevBtn?.addEventListener('click',()=>goTo(current-1));
+    nextBtn?.addEventListener('click',()=>goTo(current+1));
+    dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));
+  })();
+
   // --- Video autoplay on scroll ---
   (function(){
     const videos=document.querySelectorAll('.video-card video');
