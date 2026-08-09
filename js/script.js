@@ -122,40 +122,32 @@ document.addEventListener('DOMContentLoaded',()=>{
   })();
 
   // --- Hero frame animation (180 stills = quick time-lapse) ---
-  // Plays on all devices. No reduced-motion gate and no "wait for all 180"
-  // gate — either one of those froze the hero on frame 001. Starts cycling
-  // immediately and only swaps in frames that have decoded.
+  // Plays on every device with NO gates - no reduced-motion check, no
+  // mobile/data-saver check, no IntersectionObserver stop, no "wait until
+  // all frames loaded". Starts immediately, paces via requestAnimationFrame
+  // so a slow phone slows the time-lapse instead of freezing the hero.
   (function(){
     const img=document.getElementById('hero-video');
     if(!img)return;
-    const total=180,fps=30;
+    const total=180,fps=20,step=1000/fps;
     const frames=[];
     for(let i=1;i<=total;i++){
       const f=new Image();
       f.decoding='async';
       f.src='images/hero-frames/ezgif-frame-'+String(i).padStart(3,'0')+'.jpg';
-      frames.push(f);
+      frames[i]=f;
     }
-    let idx=0,running=false,interval=null;
-    function tick(){
-      const f=frames[idx];
-      if(f.complete&&f.naturalWidth>0)img.src=f.src;
-      idx=(idx+1)%total;
+    let idx=1,last=0;
+    function loop(now){
+      if(now-last>=step){
+        last=now;
+        const f=frames[idx];
+        if(f.complete&&f.naturalWidth>0)img.src=f.src;
+        idx=idx+1>total?1:idx+1;
+      }
+      requestAnimationFrame(loop);
     }
-    function start(){
-      if(running)return;running=true;
-      interval=setInterval(tick,1000/fps);
-    }
-    function stop(){
-      if(!running)return;running=false;
-      if(interval){clearInterval(interval);interval=null}
-    }
-    if(window.IntersectionObserver){
-      const io=new IntersectionObserver(([e])=>e.isIntersecting?start():stop(),{threshold:.1});
-      io.observe(document.querySelector('.hero')||img);
-    }else{
-      start();
-    }
+    requestAnimationFrame(loop);
   })();
 
   // --- Video autoplay on scroll (showcase clips) ---
