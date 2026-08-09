@@ -42,53 +42,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.querySelectorAll('.rv').forEach(el=>el.classList.add('vis'));
   }
 
-  // --- Hero frame animation ---
-  // Mobile + data-saver phones get the static poster frame instead of the
-  // full 180-frame sequence (~19.5MB). That loading cost is not worth it on
-  // small screens or capped data plans.
-  (function(){
-    const img=document.getElementById('hero-video');
-    if(!img)return;
-    if(!window.matchMedia('(prefers-reduced-motion:no-preference)').matches)return;
-    const isMobile=window.matchMedia('(max-width:1023px)').matches;
-    const saveData=!!(navigator.connection&&navigator.connection.saveData);
-    if(isMobile||saveData)return;
-    const total=180,fps=30;
-    const frames=[];
-    let loaded=0,running=false,interval=null;
-
-    function start(){
-      if(running)return;
-      running=true;
-      let idx=1;
-      interval=setInterval(()=>{
-        img.src=frames[idx].src;
-        idx=(idx+1)%total;
-      },1000/fps);
-    }
-    function stop(){
-      if(!running)return;
-      running=false;
-      if(interval){clearInterval(interval);interval=null}
-    }
-
-    for(let i=1;i<=total;i++){
-      const f=new Image();
-      const n=String(i).padStart(3,'0');
-      f.onload=f.onerror=()=>{loaded++;if(loaded===total)start()};
-      f.src='images/hero-frames/ezgif-frame-'+n+'.jpg';
-      frames.push(f);
-    }
-
-    const hero=document.querySelector('.hero');
-    if(hero){
-      const io=new IntersectionObserver(([e])=>{
-        e.isIntersecting&&loaded===total?start():stop();
-      },{threshold:.1});
-      io.observe(hero);
-    }
-  })();
-
   // --- Before/After Slider ---
   (function(){
     const containers=document.querySelectorAll('.ba-container');
@@ -141,7 +94,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));
   })();
 
-  // --- Video autoplay on scroll ---
+  // --- Video autoplay on scroll (showcase clips only; hero video is native autoplay) ---
   (function(){
     const videos=document.querySelectorAll('.video-card video');
     if(!videos.length||!window.IntersectionObserver)return;
