@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   (function(){
     const img=document.getElementById('hero-video');
     if(!img)return;
-    const total=180,fps=20,step=1000/fps;
+    const total=180,fps=30,step=1000/fps;
     const frames=[];
     for(let i=1;i<=total;i++){
       const f=new Image();
