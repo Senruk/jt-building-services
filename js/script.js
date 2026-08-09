@@ -94,7 +94,37 @@ document.addEventListener('DOMContentLoaded',()=>{
     dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));
   })();
 
-  // --- Video autoplay on scroll (showcase clips only; hero video is native autoplay) ---
+  // --- Hero frame animation (180 stills = time-lapse, all devices) ---
+  (function(){
+    const img=document.getElementById('hero-video');
+    if(!img)return;
+    if(!window.matchMedia('(prefers-reduced-motion:no-preference)').matches)return;
+    const total=180,fps=30;
+    const frames=[];let loaded=0,running=false,interval=null;
+    function start(){
+      if(running)return;running=true;let idx=1;
+      interval=setInterval(()=>{img.src=frames[idx].src;idx=(idx+1)%total},1000/fps);
+    }
+    function stop(){
+      if(!running)return;running=false;
+      if(interval){clearInterval(interval);interval=null}
+    }
+    for(let i=1;i<=total;i++){
+      const f=new Image();
+      const n=String(i).padStart(3,'0');
+      f.onload=f.onerror=()=>{loaded++;if(loaded===total)start()};
+      f.src='images/hero-frames/ezgif-frame-'+n+'.jpg';frames.push(f);
+    }
+    const hero=document.querySelector('.hero');
+    if(hero){
+      const io=new IntersectionObserver(([e])=>{
+        e.isIntersecting&&loaded===total?start():stop();
+      },{threshold:.1});
+      io.observe(hero);
+    }
+  })();
+
+  // --- Video autoplay on scroll (showcase clips) ---
   (function(){
     const videos=document.querySelectorAll('.video-card video');
     if(!videos.length||!window.IntersectionObserver)return;
