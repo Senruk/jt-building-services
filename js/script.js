@@ -43,10 +43,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
 
   // --- Hero frame animation ---
+  // Mobile + data-saver phones get the static poster frame instead of the
+  // full 180-frame sequence (~19.5MB). That loading cost is not worth it on
+  // small screens or capped data plans.
   (function(){
     const img=document.getElementById('hero-video');
     if(!img)return;
     if(!window.matchMedia('(prefers-reduced-motion:no-preference)').matches)return;
+    const isMobile=window.matchMedia('(max-width:1023px)').matches;
+    const saveData=!!(navigator.connection&&navigator.connection.saveData);
+    if(isMobile||saveData)return;
     const total=180,fps=30;
     const frames=[];
     let loaded=0,running=false,interval=null;
