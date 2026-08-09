@@ -121,33 +121,40 @@ document.addEventListener('DOMContentLoaded',()=>{
     dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));
   })();
 
-  // --- Hero frame animation (180 stills = time-lapse, all devices) ---
+  // --- Hero frame animation (180 stills = quick time-lapse) ---
+  // Plays on all devices. No reduced-motion gate and no "wait for all 180"
+  // gate — either one of those froze the hero on frame 001. Starts cycling
+  // immediately and only swaps in frames that have decoded.
   (function(){
     const img=document.getElementById('hero-video');
     if(!img)return;
-    if(!window.matchMedia('(prefers-reduced-motion:no-preference)').matches)return;
     const total=180,fps=30;
-    const frames=[];let loaded=0,running=false,interval=null;
+    const frames=[];
+    for(let i=1;i<=total;i++){
+      const f=new Image();
+      f.decoding='async';
+      f.src='images/hero-frames/ezgif-frame-'+String(i).padStart(3,'0')+'.jpg';
+      frames.push(f);
+    }
+    let idx=0,running=false,interval=null;
+    function tick(){
+      const f=frames[idx];
+      if(f.complete&&f.naturalWidth>0)img.src=f.src;
+      idx=(idx+1)%total;
+    }
     function start(){
-      if(running)return;running=true;let idx=1;
-      interval=setInterval(()=>{img.src=frames[idx].src;idx=(idx+1)%total},1000/fps);
+      if(running)return;running=true;
+      interval=setInterval(tick,1000/fps);
     }
     function stop(){
       if(!running)return;running=false;
       if(interval){clearInterval(interval);interval=null}
     }
-    for(let i=1;i<=total;i++){
-      const f=new Image();
-      const n=String(i).padStart(3,'0');
-      f.onload=f.onerror=()=>{loaded++;if(loaded===total)start()};
-      f.src='images/hero-frames/ezgif-frame-'+n+'.jpg';frames.push(f);
-    }
-    const hero=document.querySelector('.hero');
-    if(hero){
-      const io=new IntersectionObserver(([e])=>{
-        e.isIntersecting&&loaded===total?start():stop();
-      },{threshold:.1});
-      io.observe(hero);
+    if(window.IntersectionObserver){
+      const io=new IntersectionObserver(([e])=>e.isIntersecting?start():stop(),{threshold:.1});
+      io.observe(document.querySelector('.hero')||img);
+    }else{
+      start();
     }
   })();
 
