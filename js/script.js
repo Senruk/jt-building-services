@@ -2,6 +2,33 @@
 
 document.addEventListener('DOMContentLoaded',()=>{
 
+  // --- Cookie consent banner ---
+  (function(){
+    let consent;
+    try{consent=localStorage.getItem('cookie-consent')}catch(e){}
+    if(consent)return;
+    const banner=document.createElement('div');
+    banner.className='cookie-banner';
+    banner.setAttribute('role','dialog');
+    banner.setAttribute('aria-label','Cookie consent');
+    banner.innerHTML=
+      '<p class="cookie-text">We use cookies to improve your browsing experience and analyse site traffic. <a href="privacy.html">Read our privacy policy</a>.</p>'+
+      '<div class="cookie-actions">'+
+        '<button type="button" class="cookie-btn cookie-btn-accept">Accept</button>'+
+        '<button type="button" class="cookie-btn cookie-btn-decline">Decline</button>'+
+      '</div>';
+    document.body.appendChild(banner);
+    requestAnimationFrame(()=>banner.classList.add('show'));
+    function dismiss(choice){
+      try{localStorage.setItem('cookie-consent',choice)}catch(e){}
+      banner.classList.remove('show');
+      banner.addEventListener('transitionend',()=>banner.remove(),{once:true});
+      setTimeout(()=>{if(banner.parentNode)banner.remove()},450);
+    }
+    banner.querySelector('.cookie-btn-accept').addEventListener('click',()=>dismiss('accepted'));
+    banner.querySelector('.cookie-btn-decline').addEventListener('click',()=>dismiss('declined'));
+  })();
+
   // --- Nav scroll ---
   const nav=document.getElementById('nav');
   if(nav){

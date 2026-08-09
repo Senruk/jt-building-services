@@ -214,6 +214,37 @@ body:has(.hero) nav.scrolled .nav-toggle{color:var(--muted)}
 .accr-item strong{display:block;font-size:.82rem;color:var(--ink);font-weight:600;margin-bottom:2px}
 .accr-item span{font-size:.7rem;color:var(--muted);display:block}
 
+/* ----- COOKIE CONSENT BANNER ----- */
+.cookie-banner{
+  position:fixed;left:16px;bottom:16px;z-index:1200;max-width:460px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:16px 18px;border-radius:var(--radius);
+  background:rgba(26,26,26,.97);border:1px solid var(--border);
+  box-shadow:0 12px 40px rgba(0,0,0,.5);
+  color:var(--ink);
+  opacity:0;transform:translateY(16px);pointer-events:none;
+  transition:opacity .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1);
+}
+.cookie-banner.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.cookie-text{font-size:.82rem;line-height:1.55;color:var(--muted);margin:0;flex:1 1 240px}
+.cookie-text a{color:var(--red);text-decoration:underline}
+.cookie-actions{display:flex;gap:8px;flex-shrink:0}
+.cookie-btn{
+  font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;
+  padding:9px 16px;border-radius:var(--radius);border:1px solid var(--red);
+  background:transparent;color:var(--red);transition:background .25s ease,color .25s ease;
+}
+.cookie-btn:hover{background:rgba(200,16,46,.12)}
+.cookie-btn-accept{background:var(--red);color:#fff;border-color:var(--red)}
+.cookie-btn-accept:hover{background:#a80d27;color:#fff}
+.cookie-btn:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media(max-width:600px){
+  .cookie-banner{left:10px;right:10px;bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+  .cookie-text{flex:1 1 100%}
+  .cookie-actions{width:100%}
+  .cookie-btn{flex:1;text-align:center}
+}
+
 /* ----- STICKY CALL BUTTON (mobile) ----- */
 .sticky-call{display:none;position:fixed;bottom:0;left:0;width:100%;z-index:999;background:var(--dark);border-top:2px solid var(--red);padding:0}
 .sticky-call a{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1rem;color:#fff;font-size:.95rem;font-weight:700;font-family:var(--body);text-decoration:none;width:100%;min-height:48px}
