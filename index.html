@@ -31,12 +31,49 @@
   "sameAs":["https://www.facebook.com/jtbuildingservice/"]
 }</script>
 <link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 </head>
 <body>
 
+<script>
+  if(sessionStorage.getItem('jtbs-loaded')) {
+    document.write('<style>.loading-overlay{display:none!important}</style>')
+  } else {
+    sessionStorage.setItem('jtbs-loaded','1')
+  }
+</script>
+<div class="loading-overlay">
+  <div class="loading-box">
+    <img class="loading-logo" src="images/logo.png" alt="JT.BS South Wales Ltd">
+    <p class="loading-text">JT.BS South Wales</p>
+  </div>
+</div>
+
 <a href="#main" class="skip-link">Skip to main content</a>
+
+<script>
+// Reveal — content is NEVER left hidden. If the observer can't run,
+// a fallback force-shows everything so the page is never blank.
+try {
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), {threshold:.15, rootMargin:'0 0 -40px 0'});
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+    setTimeout(() => {
+      document.querySelectorAll('.rv:not(.in)').forEach(el => el.classList.add('in'));
+    }, 2000);
+  } else {
+    document.querySelectorAll('.rv').forEach(el => el.classList.add('in'));
+  }
+} catch (err) {
+  document.querySelectorAll('.rv').forEach(el => el.classList.add('in'));
+}
+</script>
 
 <nav id="nav">
   <div class="container nav-inner">
