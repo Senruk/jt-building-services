@@ -38,8 +38,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<style>
+.splash{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .5s ease-out}
+.splash.fadeout{opacity:0}
+.splash-logo{display:block;width:160px;height:auto;animation:splashPulse 2s ease-in-out infinite;filter:brightness(0) invert(1)}
+@keyframes splashPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@media (prefers-reduced-motion:reduce){.splash-logo{animation:none}}
+</style>
 </head>
 <body>
+
+<div id="splash" class="splash">
+  <img class="splash-logo" src="images/logo.png" alt="JT.BS South Wales Ltd">
+</div>
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
@@ -61,6 +72,26 @@ try {
 } catch (err) {
   document.querySelectorAll('.rv').forEach(el => el.classList.add('in'));
 }
+</script>
+
+<script>
+(function(){
+  var splash = document.getElementById('splash');
+  if (!splash) return;
+  var minTime = 600, hardCap = 4000, start = Date.now(), done = false;
+  function hide(){
+    if (done) return;
+    done = true;
+    splash.classList.add('fadeout');
+    setTimeout(function(){ splash.parentNode.removeChild(splash); }, 500);
+  }
+  window.addEventListener('load', hide);
+  setTimeout(hide, Math.max(hardCap, 0));
+  // Ensure minimum display time
+  setTimeout(function(){
+    if (document.readyState === 'complete') hide();
+  }, minTime);
+})();
 </script>
 
 <nav id="nav">
