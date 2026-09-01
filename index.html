@@ -33,23 +33,20 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="images/logo.png">
+<link rel="preload" as="image" href="images/hero-frames/ezgif-frame-001.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 </head>
 <body>
 
-<script>
-  if(sessionStorage.getItem('jtbs-loaded')) {
-    document.write('<style>.loading-overlay{display:none!important}</style>')
-  } else {
-    sessionStorage.setItem('jtbs-loaded','1')
-  }
-</script>
+<script>if(sessionStorage.getItem('jtbs-loaded')){document.write('<style>.loading-overlay{display:none!important}</style>')}else{sessionStorage.setItem('jtbs-loaded','1')}</script>
+
 <div class="loading-overlay">
   <div class="loading-box">
     <img class="loading-logo" src="images/logo.png" alt="JT.BS South Wales Ltd">
-    <p class="loading-text">JT.BS South Wales</p>
+    <p class="loading-text">JT.BS South Wales Ltd</p>
   </div>
 </div>
 
@@ -78,7 +75,7 @@ try {
 <nav id="nav">
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo">
-      <img src="images/logo.png" alt="JT.BS South Wales Ltd">
+      <img src="images/logo.png" alt="JT.BS South Wales Ltd" loading="lazy">
       <div class="nav-logo-text">
         <strong>JT.BS</strong>
         <span>South Wales Ltd</span>
@@ -107,7 +104,7 @@ try {
 <section class="hero">
   <div class="hero-bg">
     <!-- Time-lapse: 180 still frames cycled by JS (id "hero-video" drives the animation) -->
-    <img src="images/hero-frames/ezgif-frame-001.jpg" alt="" id="hero-video">
+    <img src="images/hero-frames/ezgif-frame-001.jpg" alt="" id="hero-video" fetchpriority="high" loading="eager">
   </div>
   <div class="container hero-content">
     <h1>Commercial construction.<br><span class="accent">Delivered.</span></h1>
@@ -194,10 +191,10 @@ try {
       <!-- Comparison 1 -->
       <div class="ba-container" role="img" aria-label="Before and after comparison 1">
         <div class="ba-before">
-          <img src="images/before-after/before-1.jpeg" alt="Before: construction phase, exterior structure">
+          <img loading="lazy" src="images/before-after/before-1.jpeg" alt="Before: construction phase, exterior structure">
         </div>
         <div class="ba-after">
-          <img src="images/before-after/after-1.jpeg" alt="After: completed project, finished interior">
+          <img loading="lazy" src="images/before-after/after-1.jpeg" alt="After: completed project, finished interior">
         </div>
         <div class="ba-handle" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6"/></svg></div>
         <span class="ba-label ba-label-left">Before</span>
@@ -207,10 +204,10 @@ try {
       <!-- Comparison 2 -->
       <div class="ba-container" role="img" aria-label="Before and after comparison 2">
         <div class="ba-before">
-          <img src="images/before-after/before-2.jpeg" alt="Before: site progress, foundation stage">
+          <img loading="lazy" src="images/before-after/before-2.jpeg" alt="Before: site progress, foundation stage">
         </div>
         <div class="ba-after">
-          <img src="images/before-after/after-2.jpeg" alt="After: completed project, finished result">
+          <img loading="lazy" src="images/before-after/after-2.jpeg" alt="After: completed project, finished result">
         </div>
         <div class="ba-handle" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6"/></svg></div>
         <span class="ba-label ba-label-left">Before</span>
@@ -220,10 +217,10 @@ try {
       <!-- Comparison 3 -->
       <div class="ba-container" role="img" aria-label="Before and after comparison 3">
         <div class="ba-before">
-          <img src="images/before-after/before-3.jpeg" alt="Before: interior renovation, initial state">
+          <img loading="lazy" src="images/before-after/before-3.jpeg" alt="Before: interior renovation, initial state">
         </div>
         <div class="ba-after">
-          <img src="images/before-after/after-3.jpeg" alt="After: finished interior, completed renovation">
+          <img loading="lazy" src="images/before-after/after-3.jpeg" alt="After: finished interior, completed renovation">
         </div>
         <div class="ba-handle" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6"/></svg></div>
         <span class="ba-label ba-label-left">Before</span>
@@ -233,10 +230,10 @@ try {
       <!-- Comparison 4 -->
       <div class="ba-container" role="img" aria-label="Before and after comparison 4">
         <div class="ba-before">
-          <img src="images/before-after/orig-before-1.jpeg" alt="Before: building works, exterior state">
+          <img loading="lazy" src="images/before-after/orig-before-1.jpeg" alt="Before: building works, exterior state">
         </div>
         <div class="ba-after">
-          <img src="images/before-after/orig-after-1.jpeg" alt="After: completed project, finished exterior">
+          <img loading="lazy" src="images/before-after/orig-after-1.jpeg" alt="After: completed project, finished exterior">
         </div>
         <div class="ba-handle" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6"/></svg></div>
         <span class="ba-label ba-label-left">Before</span>
@@ -246,10 +243,10 @@ try {
       <!-- Comparison 5 -->
       <div class="ba-container active" role="img" aria-label="Before and after comparison 5">
         <div class="ba-before">
-          <img src="images/before-after/orig-before-2.jpeg" alt="Before: renovation works, initial stage">
+          <img loading="lazy" src="images/before-after/orig-before-2.jpeg" alt="Before: renovation works, initial stage">
         </div>
         <div class="ba-after">
-          <img src="images/before-after/orig-after-2.jpeg" alt="After: renovated result, finished works">
+          <img loading="lazy" src="images/before-after/orig-after-2.jpeg" alt="After: renovated result, finished works">
         </div>
         <div class="ba-handle" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6"/></svg></div>
         <span class="ba-label ba-label-left">Before</span>
@@ -315,10 +312,10 @@ try {
     </div>
     <div class="video-grid">
       <div class="video-card rv">
-        <video src="images/videos/clip-1_18s.mp4" muted loop playsinline autoplay preload="auto" controls aria-label="Time-lapse of commercial construction project progress"></video>
+        <video src="images/videos/clip-1_18s.mp4" muted loop playsinline autoplay preload="none" controls aria-label="Time-lapse of commercial construction project progress"></video>
       </div>
       <div class="video-card rv rv-1">
-        <video src="images/videos/clip-2_7s.mp4" muted loop playsinline autoplay preload="auto" controls aria-label="Construction site footage, groundworks and foundation works"></video>
+        <video src="images/videos/clip-2_7s.mp4" muted loop playsinline autoplay preload="none" controls aria-label="Construction site footage, groundworks and foundation works"></video>
       </div>
     </div>
   </div>
@@ -396,7 +393,6 @@ try {
           <li><a href="process.html">How We Work</a></li>
           <li><a href="projects.html">Our Work</a></li>
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="careers.html">Careers</a></li>
           <li><a href="privacy.html">Privacy Policy</a></li>
         </ul>
       </div>
