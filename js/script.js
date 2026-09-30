@@ -121,33 +121,24 @@ document.addEventListener('DOMContentLoaded',()=>{
     dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));
   })();
 
-  // --- Hero frame animation (180 stills = quick time-lapse) ---
-  // Plays on every device with NO gates - no reduced-motion check, no
-  // mobile/data-saver check, no IntersectionObserver stop, no "wait until
-  // all frames loaded". Starts immediately, paces via requestAnimationFrame
-  // so a slow phone slows the time-lapse instead of freezing the hero.
+  // --- Hero background video ---
+  // A real <video>: the browser decodes it on the GPU. The previous approach
+  // swapped an <img> src across 180 separate JPEGs (180 requests / 8.2MB),
+  // which stuttered on mobile and showed per-frame JPEG artefacts.
   (function(){
-    const img=document.getElementById('hero-video');
-    if(!img)return;
-    const total=180,fps=30,step=1000/fps;
-    const frames=[];
-    for(let i=1;i<=total;i++){
-      const f=new Image();
-      f.decoding='async';
-      f.src='images/hero-frames/ezgif-frame-'+String(i).padStart(3,'0')+'.jpg';
-      frames[i]=f;
+    const v=document.getElementById('hero-video');
+    if(!v)return;
+    if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){
+      v.removeAttribute('autoplay');
+      v.pause();
+      return;
     }
-    let idx=1,last=0;
-    function loop(now){
-      if(now-last>=step){
-        last=now;
-        const f=frames[idx];
-        if(f.complete&&f.naturalWidth>0)img.src=f.src;
-        idx=idx+1>total?1:idx+1;
-      }
-      requestAnimationFrame(loop);
-    }
-    requestAnimationFrame(loop);
+    const play=()=>{const p=v.play();if(p&&p.catch)p.catch(()=>{});};
+    play();
+    // Don't burn battery decoding a decorative video in a background tab.
+    document.addEventListener('visibilitychange',()=>{
+      document.hidden?v.pause():play();
+    });
   })();
 
   // --- Video autoplay on scroll (showcase clips) ---

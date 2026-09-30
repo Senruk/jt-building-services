@@ -130,8 +130,9 @@ try {
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <!-- Time-lapse: 180 still frames cycled by JS (id "hero-video" drives the animation) -->
-    <img src="images/hero-frames/ezgif-frame-001.jpg" alt="" id="hero-video" fetchpriority="high" loading="eager">
+    <!-- Hero background: one H.264 MP4, GPU-decoded by the browser. Poster is the
+         first time-lapse frame, so a crisp still shows before playback begins. -->
+    <video id="hero-video" src="images/videos/hero.mp4" poster="images/hero-frames/ezgif-frame-001.jpg" preload="auto" autoplay muted loop playsinline aria-hidden="true" fetchpriority="high"></video>
   </div>
   <div class="container hero-content">
     <h1>Commercial &amp; domestic construction.<br><span class="accent">Delivered.</span></h1>
@@ -467,6 +468,6 @@ try {
     Call 01446731185
   </a>
 </div>
-<script src="js/script.js?v=4"></script>
+<script src="js/script.js?v=5"></script>
 </body>
 </html>
